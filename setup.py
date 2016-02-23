@@ -12,7 +12,7 @@ ext_modules = []
 
 # define the setup
 setup(name='RunDEMC', 
-      version=vstr, 
+      version='NA', 
       maintainer=['Per B. Sederberg'],
       maintainer_email=['psederberg@gmail.com'],
       url=['http://github.com/compmem/RunDEMC'],

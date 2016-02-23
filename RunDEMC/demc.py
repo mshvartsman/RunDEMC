@@ -29,7 +29,7 @@ except ImportError:
     joblib = None
 
 # local imports
-from de import DE
+from .de import DE
 
 
 class Param(object):
@@ -321,7 +321,7 @@ class Model(object):
     def _migrate(self):
         # pick which items will migrate        
         num_to_migrate = np.random.random_integers(2,self._num_chains)
-        to_migrate = random.sample(range(self._num_chains), num_to_migrate)
+        to_migrate = random.sample(list(range(self._num_chains)), num_to_migrate)
 
         # do a circle swap
         keepers = []
@@ -450,7 +450,7 @@ class Model(object):
         if self._verbose:
             sys.stdout.write('Iterations (%d): '%(num_iter))
         times = []
-        for i in xrange(num_iter):
+        for i in range(num_iter):
             if np.random.rand() < migration_prob:
                 # migrate, which is deterministic and done in place
                 if self._verbose:

@@ -14,7 +14,7 @@ import os
 import sys
 from scipy.stats import gaussian_kde,pearsonr
 
-from density import fast_2d_kde, kdensity
+from .density import fast_2d_kde, kdensity
 
 def joint_plot(particles,weights,burnin=50,names=None,legend=False,add_best=True,
                border=.1,sep=0.0,rot=None,fig=None,nxticks=5,nyticks=5,
@@ -128,14 +128,14 @@ def joint_plot(particles,weights,burnin=50,names=None,legend=False,add_best=True
                 a.grid('on')
             
             # clean labels
-            if i <> 0:
+            if i != 0:
                 for label in a.get_xticklabels():
                     label.set_visible(False)
             elif not rot is None:
                 for label in a.get_xticklabels():
                     label.set_rotation(rot)
                     #label.set_horizontalalignment('right')
-            if j <> n_p-1:
+            if j != n_p-1:
                 for label in a.get_yticklabels():
                     label.set_visible(False)
 
@@ -225,9 +225,9 @@ def violin_plot(data,positions=None,widths=None,ax=None,
             elif nc == 1:
                 x = [x.ravel()]
             else:
-                x = [x[:,i] for i in xrange(nc)]
+                x = [x[:,i] for i in range(nc)]
         else:
-            raise ValueError, "input x can have no more than 2 dimensions"
+            raise ValueError("input x can have no more than 2 dimensions")
     if not hasattr(x[0], '__len__'):
         x = [x]
     col = len(x)
@@ -241,7 +241,7 @@ def violin_plot(data,positions=None,widths=None,ax=None,
     
     # set positions and widths
     if positions is None:
-        positions = range(1, col + 1)
+        positions = list(range(1, col + 1))
     if widths is None:
         distance = max(positions) - min(positions)
         widths = min(0.15*max(distance,1.0), 0.5)

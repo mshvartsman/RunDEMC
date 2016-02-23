@@ -71,7 +71,7 @@ def fast_2d_kde(x, y, gridsize=(200, 200), extents=None,
         xmin, xmax = x.min(), x.max()
         ymin, ymax = y.min(), y.max()
     else:
-        xmin, xmax, ymin, ymax = map(float, extents)
+        xmin, xmax, ymin, ymax = list(map(float, extents))
     dx = (xmax - xmin) / (nx - 1)
     dy = (ymax - ymin) / (ny - 1)
 
@@ -189,7 +189,7 @@ def fast_1d_kde(x, nx=200, extents=None, weights=None,
     if extents is None:
         xmin, xmax = x.min(), x.max()
     else:
-        xmin, xmax = map(float, extents)
+        xmin, xmax = list(map(float, extents))
     dx = (xmax - xmin) / (nx - 1)
 
     #---- Preliminary Calculations -------------------------------------------
@@ -291,7 +291,7 @@ def vhist(h,b=None,reverse=False):
     """
     # make the b if necessary
     if b is None:
-        b = range(len(h))
+        b = list(range(len(h)))
 
     # make sure they are lists
     h = list(h)
@@ -505,7 +505,7 @@ def calc_scale_factor(dat,nbins=200,scale=1.0,verbose=True):
 
     # return best result
     if verbose:
-        print best_scale
+        print(best_scale)
     return float(best_scale)
 
 
@@ -546,7 +546,7 @@ def best_boxcox_lambdax(x, lambdax=0, verbose=False):
                                        disp=disp)
     return float(best_lambdax)
 
-from dists import normal
+from .dists import normal
 def kdensity(x, extrema=None, kernel="gaussian", 
             binwidth=None, nbins=512, weights=None, 
     #bw="nrd0", 
@@ -804,4 +804,4 @@ if __name__ == "__main__":
 """
     X = np.asarray([float(x) for x in sdata.split()])
     best_lambdax = best_boxcox_lambdax(X, lambdax=0.0)
-    print best_lambdax, boxcox_loglike(X,best_lambdax)
+    print(best_lambdax, boxcox_loglike(X,best_lambdax))

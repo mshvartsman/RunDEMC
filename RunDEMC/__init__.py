@@ -15,6 +15,6 @@ from .demc import Model, Param, HyperPrior, DE
 from .hierarchy import Hierarchy
 from . import dists
 from .dists import logit, invlogit
-from .plotting import joint_plot, violin_plot, joint_movie
+# from .plotting import joint_plot, violin_plot, joint_movie
 from .evaluation import calc_bpic
 from .io import save_results, load_results
